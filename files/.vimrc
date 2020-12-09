@@ -93,7 +93,7 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 " 设置主题
-set background=dark
+" set background=dark
 colorscheme solarized
 " let g:airline_theme='simple'
 autocmd StdinReadPre * let s:std_in=1
