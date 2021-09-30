@@ -1,0 +1,3 @@
+﻿path = .\usr\bin\mintty.exe
+args = /usr/bin/zsh -i --login
+signal = true

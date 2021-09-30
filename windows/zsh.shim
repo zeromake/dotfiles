@@ -1,4 +1,4 @@
-﻿path = D:\Program Files\PortableGit\usr\bin\zsh.exe
+﻿path = .\usr\bin\zsh.exe
 args = --login
 environment = CHERE_INVOKING=1
 signal = true
