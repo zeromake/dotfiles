@@ -1,4 +1,4 @@
-﻿path = ${dir}\usr\bin\zsh.exe
-args = --login
+﻿path = ${dir}\bin\bash.exe
+args = -c zsh --login
 environment = CHERE_INVOKING=1
 signal = true
