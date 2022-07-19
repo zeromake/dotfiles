@@ -41,8 +41,13 @@ set t_vb=
 set tm=500
 
 " macvim 关闭错误声音
-if has("gui_macvim")
+if has("gui_macvim") || has('gui_running')
     autocmd GUIEnter * set vb t_vb=
+	if has("win16") || has("win32") || has("win95") || has("win64")
+		set guifont=FiraCode_Nerd_Font_Mono,DejaVuSansMono_Nerd_Font
+	else
+		set guifont=FiraCode\ Nerd\ Font\ Mono,DejaVuSansMono\ Nerd\ Font
+	endif
 endif
 
 " 开启高亮
