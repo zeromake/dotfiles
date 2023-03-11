@@ -1,8 +1,31 @@
+if (!(Get-Command scoop -errorAction SilentlyContinue)) {
+    irm get.scoop.sh -outfile 'install.ps1'
+    .\install.ps1 -ScoopDir 'D:\Scoop' -ScoopGlobalDir 'D:\Scoop\GlobalApps'
+    Remove-Item .\install.ps1
+}
+
 if (!(Get-Command pwsh -errorAction SilentlyContinue)) {
-	winget install --id Microsoft.Powershell --source winget
+	scoop install pwsh
+}
+
+if (!(Get-Command oh-my-posh -errorAction SilentlyContinue)) {
+    scoop install oh-my-posh
 }
 
 if (!(Get-Module PSReadLine)) {
 	Install-Module PSReadLine -AllowPrerelease -Force
 }
-cp .\windows\Microsoft.PowerShell_profile.ps1 $PROFILE -Confirm
+
+if (!(Get-Module posh-git)) {
+    Install-Module posh-git -AllowPrerelease -Force
+}
+
+if (!(Get-Command sudo -errorAction SilentlyContinue)) {
+	scoop install sudo
+}
+
+if (!(Test-Path -Path "C:\Windows\Fonts\Fira Code Regular Nerd Font Complete Mono Windows Compatible.ttf" -PathType Leaf)) {
+	sudo scoop install -g FiraCode-NF-Mono
+}
+
+Copy-Item .\windows\Microsoft.PowerShell_profile.ps1 $PROFILE -Confirm

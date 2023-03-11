@@ -12,9 +12,9 @@ Import-Module posh-git
 
 chcp 65001
 
-oh-my-posh init pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\the-unnamed.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\the-unnamed.omp.json" | Invoke-Expression
 
-$aliaArr = "ps", "ls", "rm", "where", "pwd", "cat"
+$aliaArr = "ps", "ls", "rm", "where", "pwd", "cat", "wget", "curl"
 for($i=0; $i -lt $aliaArr.Length; $i++) {
 	$aliaName = $aliaArr[$i]
 	if (test-path alias:$aliaName) {
