@@ -71,7 +71,7 @@ $arr = @(
     "jn.exe",
     "kill.exe",
     "killall.exe",
-    # "less.exe",
+    "less.exe",
     "link.exe",
     "ln.exe",
     "logname.exe",
@@ -174,6 +174,11 @@ foreach ($item in $arr) {
     New-Item -ItemType SymbolicLink -Name $item -Target busybox.exe
 }
 
-Invoke-WebRequest -Uri 'https://github.com/jftuga/less-Windows/releases/download/less-v608/less.exe' -OutFile less.exe
+
+. "$($PSScriptRoot)\download.ps1"
+
+# 改用 busybox-w32
+DownloadFile 'https://frippery.org/files/busybox/busybox64.exe' "$dir\busybox.exe"
+# DownloadFile 'https://github.com/jftuga/less-Windows/releases/download/less-v608/less.exe' "$dir\less.exe"
 
 Set-Location -
