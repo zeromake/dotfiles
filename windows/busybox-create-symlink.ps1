@@ -177,8 +177,10 @@ foreach ($item in $arr) {
 
 . "$($PSScriptRoot)\download.ps1"
 
-# 改用 busybox-w32
-DownloadFile 'https://frippery.org/files/busybox/busybox64.exe' "$dir\busybox.exe"
+# 改用 busybox-w32 自行修改版支持
+DownloadFile 'https://github.com/zeromake/dotfiles/releases/download/v0.1.0/busybox.exe' "$dir\busybox.exe"
+# 使用支持高亮的 less-windows
+DownloadFile 'https://github.com/zeromake/dotfiles/releases/download/v0.1.0/less.exe' "$dir\less.exe"
 # DownloadFile 'https://github.com/jftuga/less-Windows/releases/download/less-v608/less.exe' "$dir\less.exe"
 
 Set-Location -
