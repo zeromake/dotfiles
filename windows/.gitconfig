@@ -1,0 +1,17 @@
+[user]
+	email = a390720046@gmail.com
+	name = zeromake
+[core]
+	editor = vi
+	# 关闭换行自动转换
+	autocrlf = false
+	# 混合或者与 .gitattributes 设置不同时拒绝提交
+	safecrlf = true
+	# 保证有 .gitattributes 时，没设置 eol 的项目默认为 lf 的换行
+	eol = lf
+	# clone 时支持符号链接
+	symlinks = true
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = master
