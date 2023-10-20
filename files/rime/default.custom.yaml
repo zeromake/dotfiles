@@ -1,0 +1,13 @@
+patch:
+  key_binder/bindings:
+    - when: always
+      accept: Alt+space
+      toggle: ascii_mode
+  ascii_composer/switch_key:
+    Shift_L: noop
+    Shift_R: noop
+  schema_list:
+    - schema: clover
+    - schema: luna_pinyin_simp
+  switcher/hotkeys:
+    - F4
