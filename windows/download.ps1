@@ -11,6 +11,7 @@ function DownloadFile{
         [string]$File 
     )
     Begin {
+        Write-Output "download $URL ……"
         function Show-Progress {
             param (
                 # Enter total value
@@ -59,8 +60,8 @@ function DownloadFile{
                 }
                 else {
                     Write-Host -NoNewLine "`r$ProgressText $progbar [ $($TotalValue.ToString("#.###").PadLeft($TotalValue.ToString("#.###").Length))$ValueSuffix / $($TotalValue.ToString("#.###"))$ValueSuffix ] $($percentComplete.ToString("##0.00").PadLeft(6)) % complete"                    
-                }                
-            }   
+                }
+            }
         }
     }
     Process {
@@ -132,11 +133,12 @@ function DownloadFile{
             Write-Host "Download breaks with error : $ExeptionMsg"
         } finally {
             # cleanup
+            Write-Host ""
             if ($reader) { $reader.Close() }
             if ($writer) { $writer.Flush(); $writer.Close() }
         
             $ErrorActionPreference = $storeEAP
             [GC]::Collect()
-        }    
+        }
     }
 }

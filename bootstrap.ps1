@@ -1,31 +1,19 @@
-if (!(Get-Command scoop -errorAction SilentlyContinue)) {
-    irm get.scoop.sh -outfile 'install.ps1'
-    .\install.ps1 -ScoopDir 'D:\Scoop' -ScoopGlobalDir 'D:\Scoop\GlobalApps'
-    Remove-Item .\install.ps1
-}
+param(
+    $action = "help",
+    $dir = "D:\Scoop\Program"
+)
 
-if (!(Get-Command pwsh -errorAction SilentlyContinue)) {
-	scoop install pwsh
-}
+$ErrorActionPreference = 'Stop'
 
-if (!(Get-Command oh-my-posh -errorAction SilentlyContinue)) {
-    scoop install oh-my-posh
-}
 
-if (!(Get-Module PSReadLine)) {
-	Install-Module PSReadLine -AllowPrerelease -Force
+if ($action -eq "init") {
+    if (!(Test-Path($dir))) {
+        [System.IO.Directory]::CreateDirectory($dir) | Out-Null
+    }
+    Write-Host "下载 mingit"
+    &"$PSScriptRoot\windows\install_mingit.ps1" "2.42.0" "2" "$dir\mingit"
+    Write-Host "下载 nushell"
+    &"$PSScriptRoot\windows\install_nushell.ps1" "0.86.0" "$dir\nu"
+    Write-Host "替换 busybox"
+    &"$PSScriptRoot\windows\replace_busybox.ps1" "$dir\mingit\mingw64\bin"
 }
-
-if (!(Get-Module posh-git)) {
-    Install-Module posh-git -AllowPrerelease -Force
-}
-
-if (!(Get-Command sudo -errorAction SilentlyContinue)) {
-	scoop install sudo
-}
-
-if (!(Test-Path -Path "C:\Windows\Fonts\Fira Code Regular Nerd Font Complete Mono Windows Compatible.ttf" -PathType Leaf)) {
-	sudo scoop install -g FiraCode-NF-Mono
-}
-
-Copy-Item .\windows\Microsoft.PowerShell_profile.ps1 $PROFILE -Confirm
